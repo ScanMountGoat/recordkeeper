@@ -77,7 +77,7 @@ pub struct SaveData {
 
     #[loc(0x68c)]
     pub map_id: u16,
-    pub map_time: MapTime,
+    pub map_time: Box<MapTime>,
 
     /// ID for `RSC_WeatherSet`. The game only considers this if
     /// [`SaveFlag::WeatherLocked`] is set.
@@ -105,8 +105,8 @@ pub struct SaveData {
     pub character_sets: CharacterSets,
 
     #[loc(0xe3a0)]
-    pub characters: [Character; CHARACTER_MAX],
-    pub ouroboros: [Ouroboros; OUROBOROS_MAX],
+    pub characters: Box<[Character; CHARACTER_MAX]>,
+    pub ouroboros: Box<[Ouroboros; OUROBOROS_MAX]>,
 
     /// ID for `BTL_Pair`
     #[loc(0x53c38)]
@@ -147,7 +147,7 @@ pub struct SaveData {
     pub party_formations: Box<[PartyFormation; PARTY_FORMATION_MAX]>,
 
     #[loc(0x1bec5c)]
-    pub dlc4: Dlc4,
+    pub dlc4: Box<Dlc4>,
 }
 
 #[derive(SaveBin, Debug, Clone, Copy)]
